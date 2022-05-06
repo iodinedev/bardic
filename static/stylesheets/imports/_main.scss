@@ -76,7 +76,7 @@
     text-decoration: none;
     overflow: hidden;
     text-transform: uppercase;
-    transition: all .3s ease-in-out;  
+    transition: all $transition-time ease-in-out;  
     backdrop-filter: blur(15px);
 
     &::before {
@@ -89,7 +89,7 @@
       background: 
         linear-gradient(to left, rgba(255, 255, 255, .15), transparent);
       transform: skewX(40deg) translateX(0);
-      transition: all .5s ease-out;
+      transition: all $transition-time ease-out;
     }
   }
 
@@ -107,7 +107,6 @@
       height: 50%;
       width: 80%;
       border-radius: 30px;
-      transition-delay: .3s;
     }
 
     &::before {
@@ -129,8 +128,7 @@
     height: 10px;
     border-radius: 10px;
     background: #f00;
-    transition: all .4s ease-in-out;
-    transition-delay: 0s;
+    transition: all $transition-time ease-in-out;
   }
 
   &::before {  
@@ -184,9 +182,15 @@
   padding: 0 $base-sizing*2;
   transition: $transition-time;
   justify-content: space-between;
+  z-index: 2000;
+
+  .toggle, .toggleLabel {
+    display: none;
+  }
 
   .main {
     height: $base-sizing*2;
+    z-index: 2000;
     
     img {
       height: 100%;

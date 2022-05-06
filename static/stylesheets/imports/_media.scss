@@ -3,7 +3,72 @@
 @media only screen and (min-width: $on-desktop) {
 }
 
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media only screen and (max-width: $on-mobile) {
+  .header {
+    background: none;
+    border-top: none;
+    border-bottom: none;
+    backdrop-filter: none;
+
+    ul {
+      height: $base-sizing*3;
+      background: rgba(255, 255, 255, .05);
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(15px);
+      height: $base-sizing*3;
+      transition: height $transition-time;
+      max-width: 100vw;
+      width: 100%;
+      top:0;
+      left: 0;
+      position: absolute;
+      overflow: hidden;
+      flex-direction: column;
+
+      li {
+        display: none;
+        opacity: 0;
+        flex: 1;
+      }
+    }
+
+    .toggleLabel {
+      display: inline-block;
+      height: $base-sizing;
+      z-index: 1000;
+
+      svg {
+        fill: white;
+        height: $base-sizing;
+      }
+    }
+
+    .toggle:checked ~ ul {
+      height: 100vh;
+      display: flex;
+      padding: $base-sizing*3 0;
+
+      li {
+        display: flex;
+        animation: fadein $transition-time*2 linear;
+        opacity: 1;
+      }
+    }
+  }
+
   .footer {
     flex-direction: column;
 
