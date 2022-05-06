@@ -4,7 +4,7 @@ import { PublicError } from "../components/sentry";
 export function init() {
   router.get("/", async (ctx) => {
     ctx.render("index.pug", {
-      title: "Home | CardaWorlds"
+      title: "Home | CardaWorlds",
     });
   });
 

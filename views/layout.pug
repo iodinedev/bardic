@@ -11,18 +11,12 @@ html(lang="en-us")
     meta(name="format-detection", content="telephone=no")
     meta(name="msapplication-TileColor", content="")
     meta(name="theme-color", content="")
-    meta(
-      name="description",
-      content=""
-    )
+    meta(name="description", content="")
     link(rel="canonical", href="")
     meta(property="og:locale", content="en_US")
     meta(property="og:type", content="website")
     meta(property="og:title", content="")
-    meta(
-      property="og:description",
-      content=""
-    )
+    meta(property="og:description", content="")
     meta(property="og:url", content="")
     meta(property="og:site_name", content="")
     link(rel="shortlink", href="")
@@ -30,9 +24,12 @@ html(lang="en-us")
     link(rel="stylesheet", href="/stylesheets/style.css", defer)
     link(rel="apple-touch-icon", href="")
     link(rel="icon", type="image/ico", href="")
-    link(rel="preconnect" href="https://fonts.googleapis.com")
-    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-    link(href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,500&family=Space+Mono&display=swap" rel="stylesheet")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,500&family=Space+Mono&display=swap",
+      rel="stylesheet"
+    )
     noscript
       link(
         rel="stylesheet",
@@ -41,12 +38,10 @@ html(lang="en-us")
         defer
       )
     // Viewport relativity
-    meta(
-      name="viewport",
-      content="width=device-width, initial-scale=1"
-    )
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    script(src="/javascripts/three.min.js")
   body
+    include includes/header
+
     .content
       block content
-
-    script(src="/javascripts/main.js")
