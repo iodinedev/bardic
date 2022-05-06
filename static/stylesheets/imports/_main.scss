@@ -168,12 +168,15 @@
   }
 }
 
-.header {
+.header, .footer {
   background: rgba(255, 255, 255, .05);
   border-top: 1px solid rgba(255, 255, 255, .1);
   border-bottom: 1px solid rgba(255, 255, 255, .1);
   backdrop-filter: blur(15px);
   width: 100vw;
+}
+
+.header {
   height: $base-sizing*3;
   position: fixed;
   display: flex;
@@ -212,6 +215,23 @@
         letter-spacing: 0.1em;
         text-decoration: none;
       }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  padding: $base-sizing;
+  justify-content: center;
+  gap: $base-sizing;
+
+  &__col {
+    flex: 1;
+    text-align: center;
+
+    .policy {
+      word-break: break-all;
     }
   }
 }
