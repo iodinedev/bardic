@@ -14,8 +14,8 @@ $hr-width: 50%;
 $table-text-align: left !default;
 
 $red: #FB3640;
-$purple: #9D79BC;
-$blue: #070B34;
+$lightpurple: #9D79BC;
+$deeppurple: #27183F;
 
 $background-color: #fff !default;
 $text-color: #000 !default;
@@ -32,7 +32,7 @@ $on-mobile: $on-desktop !default;
 $transition-time: 0.4s;
 
 :root {
-  --background-color: #{$blue};
+  --background-color: #{$deeppurple};
 	--text-color: white;
 	--grey-text-color: #666;
 }

@@ -173,7 +173,7 @@
   border-top: 1px solid rgba(255, 255, 255, .1);
   border-bottom: 1px solid rgba(255, 255, 255, .1);
   backdrop-filter: blur(15px);
-  width: 100vw;
+  width: 100%;
 }
 
 .header {
@@ -181,7 +181,7 @@
   position: fixed;
   display: flex;
   align-items: center;
-  padding: 0 $base-sizing;
+  padding: 0 $base-sizing*2;
   transition: $transition-time;
   justify-content: space-between;
 
@@ -222,7 +222,7 @@
 .footer {
   display: flex;
   flex-direction: row;
-  padding: $base-sizing;
+  padding: $base-sizing $base-sizing*2;
   justify-content: center;
   gap: $base-sizing;
 
