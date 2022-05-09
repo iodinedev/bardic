@@ -67,7 +67,9 @@ function createGyros(color) {
     return mesh;
 }
 
-init("/img/CardaWorld1627.png","/img/CardaWorld1627.png", "CardaWorld1627", "Rocky", 0.76, "Arcane", "no","1957-03-29", "no", "Versicoloria colony");
+if (window.innerWidth >= 1020) {
+    init("/img/CardaWorld1627.png","/img/CardaWorld1627.png", "CardaWorld1627", "Rocky", 0.76, "Arcane", "no","1957-03-29", "no", "Versicoloria colony");
+}
 
 function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moons, seedDateString, rings, rareBiomes) {
 
@@ -455,20 +457,16 @@ function runAnimation(seedDate, rings, raritiesArray) {
 
         render();
     }
-
 }
-
 
 function render(time) {
-
     renderer.render(scene, camera);
-
 }
+
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-
 }
