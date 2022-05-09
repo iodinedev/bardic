@@ -103,37 +103,44 @@ li {
  * Headings
  */
 
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.67em;
-  margin: 0
-}
-
-h5 {
-  font-size: 1.33em;
-  margin: 0
-}
-
-h6 {
-  font-size: 1.25em;
-  margin: 1.67em 0
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-weight: $base-font-weight;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-stretch: expanded;
 
   &.subheader {
     text-transform:uppercase;
     font-style:normal;
   }
+}
+
+$header-size: 1.2em;
+
+h1 {
+  font-size: $header-size*3.5;
+}
+
+h2 {
+  font-size: $header-size*2.5;
+}
+
+h3 {
+  font-size: $header-size*2;
+  margin: 0
+}
+
+h4 {
+  font-size: $header-size*1.75;
+}
+
+h5 {
+  font-size: $header-size*1.33;
+  margin: 0
+}
+
+h6 {
+  font-size: $header-size*1.25;
+  margin: 1.67em 0
 }
 
 /**

@@ -1,4 +1,5 @@
 @charset "utf-8";
+@use "sass:math";
 
 $base-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Roboto", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $base-font-size:   20px !default;
@@ -35,8 +36,21 @@ $transition-time: 0.4s;
   --background-color: #{$deeppurple};
 	--text-color: white;
 	--grey-text-color: #666;
+  color-scheme: dark;
 }
 
 @mixin relative-font-size($ratio) {
   font-size: $base-font-size * $ratio;
+}
+
+@function makelongshadow($color) {
+  $val: 0px 0px $color;
+  @for $i from 1 through 200 {
+    $val: #{$val}, #{$i}px #{$i}px #{$color};
+  }
+  @return $val;
+}
+
+@mixin longshadow($color) {
+  text-shadow: makelongshadow($color);
 }

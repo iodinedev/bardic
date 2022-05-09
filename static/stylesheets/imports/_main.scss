@@ -36,6 +36,7 @@
     display: flex;
     flex-direction: column;
     padding: $base-sizing $base-sizing*2;
+    color: rgba(255 255 255 / 87%);
   }
 }
 
@@ -213,7 +214,7 @@
     width: 100%;
     max-width: 50%;
     padding: 0;
-    gap: math.div($base-sizing, 2);
+    gap: $base-sizing;
 
     li {
       width: 100%;
@@ -226,7 +227,7 @@
         display: block;
         content: "";
         width: 0;
-        height: 3px;
+        height: 4px;
         background: white;
         position: absolute;
         transition: $transition-time;
@@ -260,7 +261,7 @@
   flex-direction: row;
   padding: $base-sizing $base-sizing*2;
   justify-content: center;
-  gap: $base-sizing;
+  gap: $base-sizing*2;
 
   &__col {
     flex: 1;
@@ -268,6 +269,15 @@
 
     .policy {
       word-break: break-all;
+    }
+  }
+
+  .bigtext {
+    height: min-content;
+    transition: $transition-time;
+
+    &:hover {
+      text-shadow: 3px 4px 0px $red;
     }
   }
 }

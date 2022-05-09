@@ -1,8 +1,7 @@
 "use strict";
 
 const body = document.body;
-let lastKnownScrollPosition = 0;
-let ticking = false;
+const hero = document.getElementById("hero");
 
 function checkScroll(scrollY) {
   if(scrollY >= 5){
@@ -15,23 +14,28 @@ function checkScroll(scrollY) {
 window.onload = checkScroll();
 document.body.onload = setTimeout(function(){document.body.className=''},800);
 
-document.addEventListener('scroll', function(e) {
-  lastKnownScrollPosition = window.scrollY;
+const callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      body.classList.remove("scrolled")
+    } else {
+        body.classList.add("scrolled")
+    }
+  })
+}
 
-  if (!ticking) {
-    window.requestAnimationFrame(function() {
-      checkScroll(lastKnownScrollPosition);
-      ticking = false;
-    });
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.99
+}
 
-    ticking = true;
-  }
-});
+const scrolledObserver = new IntersectionObserver(callback, options)
+scrolledObserver.observe(hero)
 
 function addClass(A){document.documentElement.classList.add(A)}var avif=new Image;function check_webp_feature(a){var e=new Image;e.onload=function(){var A=0<e.width&&0<e.height;a(A)},e.onerror=function(){a(!1)},e.src="data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA=="}avif.src="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=",avif.onload=function(){addClass("avif")},avif.onerror=function(){check_webp_feature(function(A){return addClass(A?"webp":"fallback")})};
 
 // MatCap-style image rendered on a sphere
-const hero = document.getElementById("hero");
 
 var camera, scene, renderer;
 var image;
@@ -54,7 +58,6 @@ function createGyros(color) {
 
     const geometry = new THREE.RingBufferGeometry(140, 143, 80);
     var pos = geometry.attributes.position;
-    console.log(pos.count);
     var v3 = new THREE.Vector3();
     for (let i = 0; i < pos.count; i++) {
         v3.fromBufferAttribute(pos, i);
@@ -417,6 +420,27 @@ function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moo
 
     runAnimation(seedDate, rings, raritiesArray);
 
+    const animationCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.remove("noAni");
+
+            runAnimation(seedDate, rings, raritiesArray);
+        } else {
+            entry.target.classList.add("noAni");
+        }
+        })
+    }
+    
+    const options2 = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    }
+    
+    const animationObserver = new IntersectionObserver(animationCallback, options2)
+    animationObserver.observe(hero)
+
 }
 
 function runAnimation(seedDate, rings, raritiesArray) {
@@ -441,7 +465,9 @@ function runAnimation(seedDate, rings, raritiesArray) {
             i = -i;
 
         });
-        requestAnimationFrame(animate);
+        if (!hero.classList.contains("noAni") && !document.hidden) {
+            requestAnimationFrame(animate);
+        }
         //controls.update(); // not required here
         mesh.rotation.x = 0.000001;
         mesh.rotation.y = time;
