@@ -105,9 +105,9 @@
 
     &::before,
     &::after{  
-      height: 50%;
-      width: 80%;
-      border-radius: 30px;
+      height: 100%;
+      width: 100%;
+      border-radius: $base-sizing*2;
     }
 
     &::before {
@@ -142,22 +142,22 @@
 
   &:nth-child(1)::before,
   &:nth-child(1)::after {
-    background: #ffdb24;
+    background: $blue;
     box-shadow: 
-      0 0 5px #ffdb24,
-      0 0 15px #ffdb24,
-      0 0 30px #ffdb24,
-      0 0 60px #ffdb24
+      0 0 5px $blue,
+      0 0 15px $blue,
+      0 0 30px $blue,
+      0 0 60px $blue
   }
 
   &:nth-child(2)::before,
   &:nth-child(2)::after {
-    background: #fbff4a;
+    background: $blue;
     box-shadow: 
-      0 0 5px #fbff4a,
-      0 0 15px #fbff4a,
-      0 0 30px #fbff4a,
-      0 0 60px #fbff4a
+      0 0 5px $blue,
+      0 0 15px $blue,
+      0 0 30px $blue,
+      0 0 60px $blue
   }
 }
 
