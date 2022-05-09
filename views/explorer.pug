@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .spacer
+  
+  .section
+    .section__text
+      h3 CardaWorld Explorer
+      p This explorer lets you see the CardaWorld assets in your wallet. Just enter a wallet address below to see the assets associated with it, or enter the name of the asset to see the associated wallet.
+      p You can click on the assets to view them in 3D in a new tab and generate a GIF if you want to show it to others.
+      form.vr
+        input(type="text" placeholder="Enter a wallet address or a CardaWorld Name (e.g.CardaWorld455)")
+        button Search

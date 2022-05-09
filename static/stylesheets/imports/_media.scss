@@ -16,6 +16,10 @@
 }
 
 @media only screen and (max-width: $on-mobile) {
+  .header, .footer {
+    padding: $base-sizing;
+  }
+
   .header {
     background: none;
     border-top: none;
@@ -49,6 +53,7 @@
       display: inline-block;
       height: $base-sizing;
       z-index: 1000;
+      cursor: pointer;
 
       svg {
         fill: white;

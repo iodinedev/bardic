@@ -1,3 +1,5 @@
+"use strict";
+
 const body = document.body;
 let lastKnownScrollPosition = 0;
 let ticking = false;
@@ -38,7 +40,6 @@ var mesh;
 const satellites = [];
 const ringsList = [];
 
-
 //var seedDate;
 function createGyros(color) {
 
@@ -74,8 +75,8 @@ function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moo
     var planetRadius = 80;
 
 
-    moonsArray = moons.split(", ");
-    raritiesArray = rareBiomes.split(", ");
+    const moonsArray = moons.split(", ");
+    const raritiesArray = rareBiomes.split(", ");
 
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); //alpha: true is used to allow backgrounds
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -89,7 +90,7 @@ function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moo
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1500);
-    camera.position.set(0, 0, 280);
+    camera.position.set(0, 0, 220);
     var maxDistance =290 + 8 * (0.51 * planetRadius / planetSize);
 
 
@@ -420,7 +421,7 @@ function runAnimation(seedDate, rings, raritiesArray) {
     animate();
     function animate() {
         //time =0;
-        time = (Date.now() - seedDate.getTime()) / 16000
+        const time = (Date.now() - seedDate.getTime()) / 16000
         satellites.forEach((obj) => {
             if (time) {
                 var dist = Math.sqrt(obj.position.x * obj.position.x + obj.position.z * obj.position.z);

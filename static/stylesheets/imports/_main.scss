@@ -174,8 +174,11 @@
   width: 100%;
 }
 
-.header {
+.spacer, .header {
   height: $base-sizing*3;
+}
+
+.header {
   position: fixed;
   display: flex;
   align-items: center;
@@ -183,6 +186,7 @@
   transition: $transition-time;
   justify-content: space-between;
   z-index: 2000;
+  gap: $base-sizing;
 
   .toggle, .toggleLabel {
     display: none;
@@ -191,9 +195,13 @@
   .main {
     height: $base-sizing*2;
     z-index: 2000;
+    display: flex;
+    align-items: center;
     
     img {
-      height: 100%;
+      height: auto;
+      max-height: 100%;
+      width: 100%;
     }
   }
 
@@ -238,4 +246,34 @@
       word-break: break-all;
     }
   }
+}
+
+input, button {
+  font-size: 16px;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: math.div($base-sizing, 2) auto;
+  padding: math.div($base-sizing, 2) $base-sizing;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 13px 21px rgba(0, 0, 0, 0.05);
+  color: white;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: $lightpurple;
+  color: white;
+  transition: 0.5s;
+}
+
+button:hover {
+  background: darken($lightpurple, 15%);
 }
