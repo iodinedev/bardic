@@ -7,7 +7,6 @@ block content
     .section__text
       h3 CardaWorld Explorer
       p This explorer lets you see the CardaWorld assets in your wallet. Just enter a wallet address below to see the assets associated with it, or enter the name of the asset to see the associated wallet.
-      p You can click on the assets to view them in 3D in a new tab and generate a GIF if you want to show it to others.
 
       p#notfound
       
@@ -207,7 +206,10 @@ block content
                 finalHtml.push(`<div class="feature">Rarity rank: ${nft.rarityRank}</div>`);
                 finalHtml.push(`<div class="feature">Rarity score: ${nft.rarityScore}</div>`);
                 finalHtml.push(`</div>`);
+                finalHtml.push(`<div style="display: flex;gap: 30px;">`);
                 finalHtml.push(`<a class="vr" href="https://www.jpg.store/asset/${nft.asset_id}" target="_blank" rel="noopener noreferrer">More Details</a>`);
+                finalHtml.push(`<a class="vr" href="https://ipfs.cardaworlds.io/ipfs/${nft.viewerIpfs}" target="_blank" rel="noopener noreferrer">View in 3D</a>`);
+                finalHtml.push(`</div>`);
                 finalHtml.push(`</div>`);
             }
 
