@@ -308,8 +308,13 @@ button {
   transition: 0.5s;
 }
 
-button:hover {
+button:not(:disabled):hover {
   background: darken($lightpurple, 15%);
+}
+
+button:disabled {
+  background: #A9A9A9;
+  cursor: default;
 }
 
 .socials {
@@ -357,4 +362,49 @@ button:hover {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.assets {
+  display: flex;
+  flex-wrap: wrap;
+
+  .asset {
+    display: flex;
+    flex: 1;
+    min-width: $base-sizing*10;
+    border-radius: $border-radius;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0 0 0 / 16%);
+    padding: $base-sizing*2;
+
+    img {
+      border-radius: $border-radius;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: math.div($base-sizing, 4);
+
+      .feature {
+        text-transform: uppercase;
+        display: flex;
+        font-size: .8em;
+        background-color: $lightpurple;
+        border-radius: $base-sizing;
+        height: $base-sizing;
+        align-items: center;
+        justify-content: center;
+        padding: 0 math.div($base-sizing, 2)
+      }
+
+      &__rarity {
+        .feature {
+          background-color: $blue;
+        }
+      }
+    }
+  }
 }

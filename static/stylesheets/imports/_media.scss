@@ -20,6 +20,16 @@
     padding: $base-sizing;
   }
 
+  .hero {
+    font-size: min(4.5vw, 1.2rem);
+    text-align: center;
+    padding: $base-sizing;
+
+    h3 {
+      color: $lightpurple;
+    }
+  }
+
   .header {
     background: none;
     border-top: none;
