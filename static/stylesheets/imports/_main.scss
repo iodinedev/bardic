@@ -78,6 +78,7 @@
     overflow: hidden;
     text-transform: uppercase;
     transition: all $transition-time ease-in-out;  
+    -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
 
     &::before {
@@ -171,6 +172,7 @@
   background: rgba(255, 255, 255, .05);
   border-top: 1px solid rgba(255, 255, 255, .1);
   border-bottom: 1px solid rgba(255, 255, 255, .1);
+  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   width: 100%;
 }
@@ -195,6 +197,7 @@
 
   .main {
     height: $base-sizing*2;
+    width: $base-sizing*2;
     z-index: 2000;
     display: flex;
     align-items: center;
@@ -214,7 +217,7 @@
     width: 100%;
     max-width: 50%;
     padding: 0;
-    gap: $base-sizing;
+    gap: $base-sizing*2;
 
     li {
       width: 100%;

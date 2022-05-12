@@ -20,12 +20,6 @@ export function init() {
     });
   });
 
-  router.get("/roadmap", async (ctx) => {
-    ctx.render("roadmap.pug", {
-      title: "Roadmap | CardaWorlds",
-    });
-  });
-
   router.get("/humans.txt", async (ctx) => {
     ctx.body = "Made by Zachary Montgomery for CardaWorlds.";
   });

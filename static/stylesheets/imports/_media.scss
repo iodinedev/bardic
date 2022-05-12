@@ -102,3 +102,25 @@
     }
   }
 }
+
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .footer {
+    background-color: rgba(0 0 0 / 93%);
+  }
+
+  @media only screen and (min-width: $on-desktop) {
+    .header {
+      background-color: rgba(0 0 0 / 93%);
+    }
+  }
+
+  @media only screen and (max-width: $on-mobile) {
+    .header {
+      background-color: none;
+
+      ul {
+        background-color: rgba(0 0 0 / 93%);
+      }
+    }
+  }
+}
