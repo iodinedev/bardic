@@ -275,7 +275,7 @@ function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moo
 
     }
     else if (atmosphere == "Arcane") {
-        var atmosphereColors = "( 0.68, 0.2, 0.87, 1.1 )";
+        var atmosphereColors = "( 0.98, 0.21, 0.25, 1.1 )";
         var glowRadius = 92;
 
     }
@@ -286,7 +286,7 @@ function init(imageURL, heightmap, name, planetType, planetSize, atmosphere, moo
     }
     else if (atmosphere == "Eldritch") {
         var atmosphereColors = "( 0.84, 0.25, 0.82, 1.1 )";
-        var glowRadius = 103;
+        var glowRadius = 105;
 
     }else if (atmosphere == "Poisonous") {
         var atmosphereColors = "( 0.44, 0.85, 0.2, 1.1 )";
