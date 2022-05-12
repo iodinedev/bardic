@@ -8,7 +8,7 @@ const dapps = document.getElementById("dapps");
 const form = document.getElementById("form");
 const loader = document.getElementById("loader");
 
-const server_url = "http://localhost:8080";
+const server_url = "http://preview.cardaworlds.io";
 
 walletAddress.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
