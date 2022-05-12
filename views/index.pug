@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .hero#hero
+  #hero.hero
     h1 CardaWorlds
     h3 Own a fantasy world
 
@@ -19,20 +19,28 @@ block content
       p You can buy one on the secondary market; we're verified on both jpeg.store and cnft.io. Check out the collections!
       .btnWrapper.vr
         button.btn
-          a(href="https://www.jpg.store/collection/cardaworlds" target="_blank" rel="noopener noreferrer") jpeg.store
+          a(
+            href="https://www.jpg.store/collection/cardaworlds",
+            target="_blank",
+            rel="noopener noreferrer"
+          ) jpeg.store
         button.btn
-          a(href="https://cnft.io/marketplace?project=CardaWorlds" target="_blank" rel="noopener noreferrer") cnft.io
+          a(
+            href="https://cnft.io/marketplace?project=CardaWorlds",
+            target="_blank",
+            rel="noopener noreferrer"
+          ) cnft.io
 
     .section__text
       h3 The Future
       p Soon you will be able to combine planets to mint a star! You will then own a star that represents a solar system combining the attributes of your planets. Only planets from the same galaxy can be combined.
-      
-  script(type="x-shader/x-vertex" id="vertexShader").
+
+  script#vertexShader(type="x-shader/x-vertex").
     varying vec3 vNormal;
     void main() 
     {
         vNormal = normalize( normalMatrix * normal );
         gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-        
+
     }
   script(src="/javascripts/main.js")

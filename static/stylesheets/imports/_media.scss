@@ -16,7 +16,8 @@
 }
 
 @media only screen and (max-width: $on-mobile) {
-  .header, .footer {
+  .header,
+  .footer {
     padding: $base-sizing;
   }
 
@@ -38,17 +39,17 @@
     backdrop-filter: none;
 
     ul {
-      height: $base-sizing*3;
-      background: rgba(255, 255, 255, .05);
-      border-top: 1px solid rgba(255, 255, 255, .1);
-      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      height: $base-sizing * 3;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       -webkit-backdrop-filter: blur(15px);
       backdrop-filter: blur(15px);
-      height: $base-sizing*3;
+      height: $base-sizing * 3;
       transition: height $transition-time;
       max-width: 100vw;
       width: 100%;
-      top:0;
+      top: 0;
       left: 0;
       position: absolute;
       overflow: hidden;
@@ -76,11 +77,11 @@
     .toggle:checked ~ ul {
       height: 100vh;
       display: flex;
-      padding: $base-sizing*3 0;
+      padding: $base-sizing * 3 0;
 
       li {
         display: flex;
-        animation: fadein $transition-time*2 linear;
+        animation: fadein $transition-time * 2 linear;
         opacity: 1;
       }
     }

@@ -5,7 +5,8 @@
 @use "sass:list";
 @use "sass:math";
 
-html, body {
+html,
+body {
   min-height: 100%;
   width: 100%;
   max-width: 100%;
@@ -15,7 +16,8 @@ html, body {
 }
 
 body {
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height}
+    $base-font-family;
   font-display: optional;
   color: var(--text-color);
   background: var(--background-color);
@@ -40,9 +42,9 @@ body {
 
 hr {
   border: 0;
-  border-top: $base-sizing*0.2 solid white;
-  width: calc(75vw - #{$base-sizing*2});
-  max-width: $base-sizing*10;
+  border-top: $base-sizing * 0.2 solid white;
+  width: calc(75vw - #{$base-sizing * 2});
+  max-width: $base-sizing * 10;
   border-radius: $border-radius;
 }
 
@@ -50,7 +52,8 @@ hr {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 
-%vertical-rhythm, p:not(.novr) {
+%vertical-rhythm,
+p:not(.novr) {
   margin-top: $base-sizing * 0.5;
 }
 
@@ -70,14 +73,13 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
-  
 }
 
 /**
  * Figures
  */
 
-figure>img {
+figure > img {
   display: block;
 }
 
@@ -89,12 +91,14 @@ figcaption {
  * Lists
  */
 
-ul, ol {
+ul,
+ol {
   margin: 0;
 }
 
 li {
-  >ul, >ol {
+  > ul,
+  > ol {
     margin-bottom: 0;
   }
 }
@@ -103,44 +107,49 @@ li {
  * Headings
  */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: $base-font-weight;
   font-family: "Bebas Neue", sans-serif;
   font-stretch: expanded;
 
   &.subheader {
-    text-transform:uppercase;
-    font-style:normal;
+    text-transform: uppercase;
+    font-style: normal;
   }
 }
 
 $header-size: 1.2em;
 
 h1 {
-  font-size: $header-size*3.5;
+  font-size: $header-size * 3.5;
 }
 
 h2 {
-  font-size: $header-size*2.5;
+  font-size: $header-size * 2.5;
 }
 
 h3 {
-  font-size: $header-size*2;
-  margin: 0
+  font-size: $header-size * 2;
+  margin: 0;
 }
 
 h4 {
-  font-size: $header-size*1.75;
+  font-size: $header-size * 1.75;
 }
 
 h5 {
-  font-size: $header-size*1.33;
-  margin: 0
+  font-size: $header-size * 1.33;
+  margin: 0;
 }
 
 h6 {
-  font-size: $header-size*1.25;
-  margin: 1.67em 0
+  font-size: $header-size * 1.25;
+  margin: 1.67em 0;
 }
 
 /**
@@ -151,7 +160,7 @@ a {
   color: var(--text-color);
   text-underline-offset: 3px;
   transition: math.div($transition-time, 2);
-  
+
   .social-media-list &:hover {
     text-decoration: none;
     .username {
@@ -175,7 +184,7 @@ a:before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #FFF;
+  background-color: #fff;
   visibility: hidden;
   transform: scaleX(0);
   transition: all $transition-time ease-in-out;
@@ -192,7 +201,7 @@ a.animatedlink:before {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #FFF;
+  background-color: #fff;
   visibility: hidden;
   transition: all $transition-time ease-in-out;
 }
@@ -243,7 +252,8 @@ blockquote {
  * Code formatting
  */
 
-pre, code {
+pre,
+code {
   @include relative-font-size(0.9375);
   border: 1px solid $light-grey;
   border-radius: 3px;
@@ -258,7 +268,7 @@ code {
 pre {
   padding: 8px 12px;
   overflow-x: auto;
-  >code {
+  > code {
     border: 0;
     padding-right: 0;
     padding-left: 0;
@@ -289,7 +299,7 @@ pre {
 }
 
 .social-media-list {
-  li+li {
+  li + li {
     padding-top: 5px;
   }
 }
@@ -310,7 +320,8 @@ table {
       background-color: rgba(255 255 255 / 8%);
     }
   }
-  th, td {
+  th,
+  td {
     padding: math.div($base-sizing, 2);
   }
   th {

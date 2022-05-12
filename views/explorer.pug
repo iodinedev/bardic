@@ -2,226 +2,24 @@ extends layout
 
 block content
   .spacer
-  
+
   .section
     .section__text
       h3 CardaWorld Explorer
       p This explorer lets you see the CardaWorld assets in your wallet. Just enter a wallet address below to see the assets associated with it, or enter the name of the asset to see the associated wallet.
 
-      p#notfound
-      
-      input(type="text" placeholder="Enter a wallet address or a CardaWorld Name (e.g.CardaWorld455)")#search.vr
-      button(onclick="searchAddress()")#searchButton Search
+      #form
+        p#notfound
 
-      .assets.vr#assets
+        input#search.vr(
+          type="text",
+          placeholder="Enter a wallet address or a CardaWorld Name (e.g.CardaWorld455)"
+        )
+        button#searchButton(onclick="searchAddress()") Search
 
-  script.
-    "use strict";
+        #dapps.dapps
 
-    const walletAddress = document.getElementById("search");
-    const searchButton = document.getElementById("searchButton");
-    const notFound = document.getElementById("notfound");
-    const assets = document.getElementById("assets");
+      #assets.assets.vr
+        #loader(style="display:none") Loading...
 
-    walletAddress.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            searchButton.click();
-        }
-    });
-
-    async function getRarities(server_url) {
-        try {
-            const response = await fetch(server_url + "/GetRarityRanks", {
-                "dataType": 'json',
-                "method": "GET",
-            // "mode":"no-cors",
-                "headers": { 'Content-Type': 'application/json'}
-            });
-
-            const json = await response.json();
-            return json;
-        } catch(err) {
-            console.log(err);
-            return {};
-        }
-    }
-
-    async function searchAddress() {
-        const state = {
-            SERVER_URL: "http://preview.cardaworlds.io",
-            all_nfts: [],
-            walletAddress: walletAddress.value,
-            policyID: "8dd5717e7d4d993019dbd788c19837910e3fcf647ab282f828c80a7a"
-        };
-
-        state.rarityTools = await getRarities(state.SERVER_URL);
-
-        const encoded = convertASCIItoHex(state.walletAddress);
-
-        setState({ buttonDisabled: true, buttonLabel: "Searching..."});
-
-        if (state.walletAddress.startsWith("CardaWorld")) {
-            getNftDetails(state.SERVER_URL, state.rarityTools, state.all_nfts, state.policyID + encoded);
-        } else if (state.walletAddress.startsWith("addr1")) {
-            fetch(state.SERVER_URL + "/CheckPoolPm/" + state.walletAddress, {
-                "dataType": 'jsonp',
-                "method": "GET"
-            })
-                .then(response => response.json())
-                .then(response => {
-                    var all_assets = response.tokens;
-                    var cardaworld_counter = 0;
-
-                    all_assets.map((asset) => {
-                        if (asset.policy.startsWith(state.policyID)) {
-                            if (asset.quantity > 0) {
-                                cardaworld_counter += 1;
-
-                                var encoded = convertASCIItoHex(asset.name);
-                                var asset_id = state.policyID + encoded;
-                                var metadata = asset.metadata;
-                                var image_ipfs = metadata.image.replace("ipfs://", "")
-                                var imageURL = "https://infura-ipfs.io/ipfs/" + image_ipfs
-                                var nft_info = {
-                                    "asset_id": asset_id,
-                                    "description": metadata.description,
-                                    "name": metadata.name,
-                                    "imageURL": imageURL,
-                                    "rarities": metadata["rare biomes"],
-                                    "moons": metadata["moons"],
-                                    "galaxyType": metadata["galaxy type"],
-                                    "viewerIpfs": metadata.files[0].src.replace("ipfs://", ""),
-                                    "rings": metadata.rings,
-                                    "planetType": metadata["planet type"],
-                                    "planetName": metadata["planet name"],
-                                    "planetSize": metadata["planet size"],
-                                    "atmosphere": metadata["atmosphere"],
-                                    "rarityRank":state.rarityTools[asset.name]["rarityRank"],
-                                    "rarityScore":state.rarityTools[asset.name]["rarityScore"]
-                                }
-                                
-                                state.all_nfts = state.all_nfts.concat(nft_info);
-                            }
-                        }
-
-                    });
-
-                    if (cardaworld_counter == 0) {
-                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "CardaWorlds not found for this address. Please check the address or try again.", all_nfts: state.all_nfts })
-                    } else {
-                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "", all_nfts: state.all_nfts })
-                    }
-                })
-
-                .catch(err => {
-                    console.log(err);
-                    // window.alert("Please enter a valid address");
-                    setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "CardaWorlds not found for this address. Please check the address or try again." })
-                });
-        } else {
-            setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "CardaWorlds not found for this address. Please enter a valid address." })
-            console.log("Please enter a valid address");
-            //window.alert("Please enter a valid address");
-        }
-
-        setState({ all_nfts: [] })
-    }
-
-    function getNftDetails(server_url, rarityTools, allNfts, assetID) {
-        fetch(server_url + "/CheckAsset/" + assetID, {
-            "dataType": 'jsonp',
-            "method": "GET"
-        })
-            .then(response => response.json())
-            .then(response => {
-                var metadata = response.onchain_metadata;
-                var image_ipfs = metadata.image.replace("ipfs://", "")
-                var imageURL = "https://infura-ipfs.io/ipfs/" + image_ipfs
-                var nft_info = {
-                    "asset_id": response.asset,
-                    "asset_name": response.name,
-                    "name": metadata.name,
-                    "imageURL": imageURL,
-                    "rarities": metadata["rare biomes"],
-                    "moons": metadata["moons"],
-                    "galaxyType": metadata["galaxy type"],
-                    "viewerIpfs": metadata.files[0].src.replace("ipfs://", ""),
-                    "rings": metadata.rings,
-                    "planetType": metadata["planet type"],
-                    "planetName": metadata["planet name"],
-                    "planetSize": metadata["planet size"],
-                    "atmosphere": metadata["atmosphere"],
-                    "rarityRank":rarityTools[metadata.name.replace(" #", "")]["rarityRank"],
-                    "rarityScore":rarityTools[metadata.name.replace(" #", "")]["rarityScore"],
-                }
-                if (response.quantity > 0) {
-                    setState({ all_nfts: allNfts.concat(nft_info), buttonDisabled: false, buttonLabel: "Search", notFoundText: "" })
-                }
-
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
-    function setState(settings) {
-        if (typeof settings.buttonDisabled !== 'undefined') {
-            searchButton.disabled = settings.buttonDisabled;
-        }
-
-        if (typeof settings.buttonLabel !== "undefined") {
-            searchButton.innerHTML = settings.buttonLabel;
-        }
-
-        if (typeof settings.notFoundText !== "undefined") {
-            notFound.innerHTML = settings.notFoundText;
-        }
-
-        if (typeof settings.all_nfts !== "undefined") {
-            const finalHtml = [];
-
-            for (const nftId in settings.all_nfts) {
-                const nft = settings.all_nfts[nftId];
-
-                finalHtml.push(`<div class="asset">`);
-                finalHtml.push(`<img src="${nft.imageURL}">`);
-                finalHtml.push(`<h3>${nft.name}</h3>`);
-                finalHtml.push(`<h4>${nft.planetName}</h4>`);
-                finalHtml.push(`<p>Features</p>`);
-                finalHtml.push(`<div class="features">`);
-                if (nft.moons !== "No") finalHtml.push(`<div class="feature">Moons</div>`);
-                if (nft.rings !== "No") finalHtml.push(`<div class="feature">Gyros</div>`);
-                finalHtml.push(`<div class="feature">${nft.planetType}</div>`);
-                finalHtml.push(`<div class="feature">${nft.galaxyType} Galaxy</div>`);
-                finalHtml.push(`<div class="feature">${nft.atmosphere} Atmosphere</div>`);
-                finalHtml.push(`<div class="feature">${nft.rarities}</div>`);
-                finalHtml.push(`</div>`);
-                finalHtml.push(`<p>Rarity</p>`);
-                finalHtml.push(`<div class="features features__rarity">`);
-                finalHtml.push(`<div class="feature">Rarity rank: ${nft.rarityRank}</div>`);
-                finalHtml.push(`<div class="feature">Rarity score: ${nft.rarityScore}</div>`);
-                finalHtml.push(`</div>`);
-                finalHtml.push(`<div style="display: flex;gap: 30px;">`);
-                finalHtml.push(`<a class="vr" href="https://www.jpg.store/asset/${nft.asset_id}" target="_blank" rel="noopener noreferrer">More Details</a>`);
-                finalHtml.push(`<a class="vr" href="https://ipfs.cardaworlds.io/ipfs/${nft.viewerIpfs}" target="_blank" rel="noopener noreferrer">View in 3D</a>`);
-                finalHtml.push(`</div>`);
-                finalHtml.push(`</div>`);
-            }
-
-            assets.innerHTML = finalHtml.join("");
-        }
-    }
-
-    function convertASCIItoHex(asciiVal) {
-        const final = [];
-        const vals = asciiVal.split("");
-
-        for (let i = 0; i < vals.length; i++) {
-            const asciiCode = vals[i].charCodeAt(0);
-            const hexValue = asciiCode.toString(16);
-
-            final.push(hexValue);
-        }
-
-        return final.join("");
-    }
+  script(src="/javascripts/explorer.js")
