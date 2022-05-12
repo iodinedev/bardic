@@ -75,45 +75,42 @@ block content
 
                     all_assets.map((asset) => {
                         if (asset.policy.startsWith(state.policyID)) {
-                            cardaworld_counter += 1;
-
-                            console.log(state.rarityTools)
-                            console.log(state.rarityTools[asset.name])
-
-                            var encoded = convertASCIItoHex(asset.name);
-                            var asset_id = state.policyID + encoded;
-                            var metadata = asset.metadata;
-                            var image_ipfs = metadata.image.replace("ipfs://", "")
-                            var imageURL = "https://infura-ipfs.io/ipfs/" + image_ipfs
-                            var nft_info = {
-                                "asset_id": asset_id,
-                                "description": metadata.description,
-                                "name": metadata.name,
-                                "imageURL": imageURL,
-                                "rarities": metadata["rare biomes"],
-                                "moons": metadata["moons"],
-                                "galaxyType": metadata["galaxy type"],
-                                "viewerIpfs": metadata.files[0].src.replace("ipfs://", ""),
-                                "rings": metadata.rings,
-                                "planetType": metadata["planet type"],
-                                "planetName": metadata["planet name"],
-                                "planetSize": metadata["planet size"],
-                                "atmosphere": metadata["atmosphere"],
-                                "rarityRank":state.rarityTools[asset.name]["rarityRank"],
-                                "rarityScore":state.rarityTools[asset.name]["rarityScore"]
-                            }
                             if (asset.quantity > 0) {
-                                setState({ all_nfts: state.all_nfts.concat(nft_info) })
-                                setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "" })
+                                cardaworld_counter += 1;
+
+                                var encoded = convertASCIItoHex(asset.name);
+                                var asset_id = state.policyID + encoded;
+                                var metadata = asset.metadata;
+                                var image_ipfs = metadata.image.replace("ipfs://", "")
+                                var imageURL = "https://infura-ipfs.io/ipfs/" + image_ipfs
+                                var nft_info = {
+                                    "asset_id": asset_id,
+                                    "description": metadata.description,
+                                    "name": metadata.name,
+                                    "imageURL": imageURL,
+                                    "rarities": metadata["rare biomes"],
+                                    "moons": metadata["moons"],
+                                    "galaxyType": metadata["galaxy type"],
+                                    "viewerIpfs": metadata.files[0].src.replace("ipfs://", ""),
+                                    "rings": metadata.rings,
+                                    "planetType": metadata["planet type"],
+                                    "planetName": metadata["planet name"],
+                                    "planetSize": metadata["planet size"],
+                                    "atmosphere": metadata["atmosphere"],
+                                    "rarityRank":state.rarityTools[asset.name]["rarityRank"],
+                                    "rarityScore":state.rarityTools[asset.name]["rarityScore"]
+                                }
+                                
+                                state.all_nfts = state.all_nfts.concat(nft_info);
                             }
                         }
 
                     });
 
                     if (cardaworld_counter == 0) {
-                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "CardaWorlds not found for this address. Please check the address or try again." })
+                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "CardaWorlds not found for this address. Please check the address or try again.", all_nfts: state.all_nfts })
                     } else {
-                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "" })
+                        setState({ buttonDisabled: false, buttonLabel: "Search", notFoundText: "", all_nfts: state.all_nfts })
                     }
                 })
 
@@ -184,7 +181,6 @@ block content
         if (typeof settings.all_nfts !== "undefined") {
             const finalHtml = [];
 
-            console.log(settings)
             for (const nftId in settings.all_nfts) {
                 const nft = settings.all_nfts[nftId];
 
