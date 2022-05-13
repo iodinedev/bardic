@@ -1,6 +1,9 @@
 .header
   a(href="/").main
-    img(src="/img/cardaworlds.png")
+    span.visually-hidden CardaWorlds
+    picture
+      source(srcset="/img/cardaworlds.avif" type="image/avif")
+      img(src="/img/cardaworlds.png" alt="CardaWorlds logo")
 
   input(type="checkbox").toggle#toggle
 
