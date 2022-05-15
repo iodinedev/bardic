@@ -15,11 +15,11 @@ block content
           type="text",
           placeholder="Enter a wallet address or a CardaWorld Name (e.g.CardaWorld455)"
         )
-        button#searchButton(onclick="searchAddress()") Search
+        button#searchButton Search
 
         #dapps.dapps
 
       #assets.assets.vr
-        #loader(style="display:none") Loading...
+        .loader#loader Loading...
 
   script(src="/javascripts/explorer.js")

@@ -30,7 +30,7 @@ koa.use(csp({
   policy: {
     'img-src': ["'self'", "data:"],
     'script-src': ["'self'"],
-    styleSrc: ["'self'", "fonts.googleapis.com", "'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='"],
+    styleSrc: ["'self'", "fonts.googleapis.com"],
   },
 }));
 

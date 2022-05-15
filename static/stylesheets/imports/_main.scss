@@ -389,6 +389,11 @@ button:disabled {
     background-color: rgba(0 0 0 / 16%);
     padding: $base-sizing * 2;
 
+    &__links {
+      display: flex;
+      gap: 30px;
+    }
+
     img {
       border-radius: $border-radius;
     }
@@ -418,4 +423,8 @@ button:disabled {
       }
     }
   }
+}
+
+.loader {
+  display:none
 }
