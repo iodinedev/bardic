@@ -28,7 +28,7 @@ koa.use(csp());
 koa.use(csp({
   enableWarn: true,
   policy: {
-    'img-src': ["'self'", "data:"],
+    'img-src': ["'self'", "data:", "infura-ipfs.io", "*.ipfs.infura-ipfs.io"],
     'script-src': ["'self'"],
     styleSrc: ["'self'", "fonts.googleapis.com"],
   },
