@@ -15,6 +15,7 @@ RUN yarn install --production=true
 # Set environment variables
 ENV HTTP_PORT=3000
 ENV HTTP_HOST=0.0.0.0
+ENV API_KEY = "cAiR6OBMC8HcwEc8kf9BVPR05eqW1Cx0"
 
 # Expose the http port
 EXPOSE ${HTTP_PORT}
